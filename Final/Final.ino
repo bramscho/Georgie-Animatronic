@@ -1,0 +1,36 @@
+#define CUSTOM_SETTINGS
+#define INCLUDE_MUSIC_PLAYER_SHIELD
+#define INCLUDE_TOGGLE_BUTTON_SHIELD
+
+/* Include 1Sheeld library. */
+#include <OneSheeld.h>
+
+
+int ledPin = 8;                // choose the pin for the LED
+int inputPin = 13;               // choose the input pin (for PIR sensor)
+int pirState = LOW;             // we start, assuming no motion detected
+int val = 0;                    // variable for reading the pin status
+ 
+void setup() {
+  pinMode(ledPin, OUTPUT);      // declare LED as output
+  pinMode(inputPin, INPUT);     // declare sensor as input
+ 
+  Serial.begin(9600);
+
+  OneSheeld.begin();
+  
+}
+ 
+void loop(){
+  val = digitalRead(inputPin);  // read input value
+  if (val == HIGH) {            // check if the input is HIGH
+    digitalWrite(ledPin, LOW);  // turn LED ON
+    MusicPlayer.play();
+  }
+  
+ else {
+    digitalWrite(ledPin, HIGH); // turn LED OFF
+    MusicPlayer.pause();
+    }
+  }
+
