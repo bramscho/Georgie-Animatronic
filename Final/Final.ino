@@ -1,6 +1,5 @@
 #define CUSTOM_SETTINGS
 #define INCLUDE_MUSIC_PLAYER_SHIELD
-#define INCLUDE_TOGGLE_BUTTON_SHIELD
 
 /* Include 1Sheeld library. */
 #include <OneSheeld.h>
@@ -15,7 +14,7 @@ void setup() {
   pinMode(ledPin, OUTPUT);      // declare LED as output
   pinMode(inputPin, INPUT);     // declare sensor as input
  
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   OneSheeld.begin();
   
@@ -26,11 +25,13 @@ void loop(){
   if (val == HIGH) {            // check if the input is HIGH
     digitalWrite(ledPin, LOW);  // turn LED ON
     MusicPlayer.play();
+    
   }
   
  else {
     digitalWrite(ledPin, HIGH); // turn LED OFF
-    MusicPlayer.pause();
     }
+    
+    delay(20000);
   }
 
